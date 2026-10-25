@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Cương Ôn Tập Tin Học - Chọn Lọc</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.55; padding: 14px; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .header-card { background: var(--card); border-radius: 12px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+    h1 { font-size: 1.3rem; color: var(--primary); margin-bottom: 4px; text-align: center; text-transform: uppercase; }
+    .subtitle { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; font-weight: 500; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--border); }
+    .filter-group, .action-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    select, button { padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: 1px solid var(--border); transition: all 0.15s ease; }
+    select { background-color: #fff; color: var(--text); max-width: 100%; }
+    .btn-primary { background-color: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background-color: var(--primary-hover); }
+    .btn-outline { background-color: #fff; color: var(--text); }
+    .btn-outline:hover { background-color: #f1f5f9; }
+    .btn-warning { background-color: #f59e0b; color: #fff; border-color: #f59e0b; }
+    .btn-warning:hover { background-color: #d97706; }
+    
+    .stats-bar { position: sticky; top: 8px; z-index: 20; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(6px); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); font-size: 0.9rem; font-weight: 600; }
+    .stat-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .stat-badge { padding: 4px 10px; border-radius: 6px; background: #f1f5f9; }
+    .stat-correct { color: var(--success); background: var(--success-bg); }
+    .stat-wrong { color: var(--danger); background: var(--danger-bg); }
+    .stat-score { color: var(--primary); background: #dbeafe; }
+
+    .question-card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 14px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .card-header-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; align-items: center; }
+    .topic-tag { font-size: 0.76rem; font-weight: 600; color: var(--primary); background: #eff6ff; padding: 3px 8px; border-radius: 4px; }
+    .type-tag { font-size: 0.76rem; font-weight: 600; color: #7c3aed; background: #f3e8ff; padding: 3px 8px; border-radius: 4px; }
+
+    .question-text { font-weight: 600; font-size: 0.98rem; margin-bottom: 12px; white-space: pre-line; }
+
+    .options-list { display: flex; flex-direction: column; gap: 8px; }
+    .option-btn { text-align: left; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.94rem; color: var(--text); display: flex; align-items: flex-start; gap: 10px; width: 100%; font-weight: 400; }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #eff6ff; }
+    .option-btn.selected { border-color: var(--primary); background: #dbeafe; font-weight: 600; }
+    .option-btn.correct { border-color: var(--success) !important; background: var(--success-bg) !important; color: #14532d !important; font-weight: 600; }
+    .option-btn.wrong { border-color: var(--danger) !important; background: var(--danger-bg) !important; color: #7f1d1d !important; }
+
+    .tf-list { display: flex; flex-direction: column; gap: 10px; }
+    .tf-row { display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 8px; background: #f8fafc; border: 1.5px solid var(--border); }
+    @media (min-width: 600px) { .tf-row { flex-direction: row; justify-content: space-between; align-items: center; } }
+    .tf-row.row-correct { border-color: var(--success); background: #f0fdf4; }
+    .tf-row.row-wrong { border-color: var(--danger); background: #fef2f2; }
+    .tf-statement { font-size: 0.94rem; flex: 1; padding-right: 8px; }
+    .tf-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+    .tf-btn { min-width: 72px; padding: 7px 12px; border-radius: 6px; font-size: 0.88rem; font-weight: 600; background: #ffffff; border: 1.5px solid var(--border); color: var(--text); }
+    .tf-btn:hover:not(:disabled) { border-color: var(--primary); background: #eff6ff; }
+    .tf-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tf-btn.correct-choice { background: var(--success) !important; color: #fff !important; border-color: var(--success) !important; }
+    .tf-btn.wrong-choice { background: var(--danger) !important; color: #fff !important; border-color: var(--danger) !important; }
+
+    .feedback { margin-top: 12px; font-size: 0.9rem; font-weight: 600; padding: 9px 12px; border-radius: 6px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.ok { color: var(--success); background: var(--success-bg); }
+    .feedback.partial { color: var(--warning); background: var(--warning-bg); }
+    .feedback.err { color: var(--danger); background: var(--danger-bg); }
+
+    .bottom-tool-card { background: var(--card); border-radius: 12px; padding: 20px; margin-top: 18px; margin-bottom: 36px; border: 2px dashed var(--primary); text-align: center; box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08); }
+    .bottom-tool-title { font-size: 1.02rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .bottom-tool-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; }
+    .bottom-tool-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .btn-scroll-top-fast { background: var(--primary); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-size: 0.94rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25); }
+    .btn-scroll-top-fast:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .floating-top-btn { position: fixed; bottom: 20px; right: 20px; z-index: 50; background: var(--primary); color: #fff; border: none; border-radius: 999px; padding: 10px 16px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); display: none; align-items: center; gap: 6px; }
+    .floating-top-btn.visible { display: inline-flex; }
+    .floating-top-btn:hover { background: var(--primary-hover); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-card">
+      <h1 id="quizTitle">ĐỀ ÔN TẬP TIN HỌC</h1>
+      <div class="subtitle" id="quizSubtitle"></div>
+      
+      <div class="controls">
+        <div class="filter-group">
+          <select id="topicSelect" onchange="initQuiz()"></select>
+          <select id="typeSelect" onchange="initQuiz()">
+            <option value="all">Tất cả dạng câu</option>
+            <option value="mcq">Phần I: Trắc nghiệm A, B, C, D</option>
+            <option value="tf">Phần II: Đúng / Sai</option>
+          </select>
+          <select id="modeSelect" onchange="initQuiz()">
+            <option value="instant">Chế độ: Chọn xong biết đúng/sai ngay</option>
+            <option value="exam">Chế độ: Làm hết rồi bấm Chấm điểm</option>
+          </select>
+        </div>
+        <div class="action-group">
+          <button class="btn-primary" id="submitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm</button>
+          <button class="btn-warning" id="retryWrongBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai</button>
+          <button class="btn-outline" onclick="initQuiz(true)">Đảo thứ tự câu</button>
+          <button class="btn-outline" onclick="initQuiz(false)">Làm lại từ đầu</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="progressText">Đã làm: 0 / 0</span>
+      <div class="stat-group">
+        <span class="stat-badge stat-correct" id="correctText">Tối đa: 0</span>
+        <span class="stat-badge stat-wrong" id="wrongText">Sai sót: 0</span>
+        <span class="stat-badge stat-score" id="scoreText">Điểm: 0.00 / 0.00</span>
+      </div>
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <div class="bottom-tool-card">
+      <div class="bottom-tool-title" id="bottomStatusTitle">Hoàn thành</div>
+      <div class="bottom-tool-desc" id="bottomStatusDesc">Sử dụng công cụ bên dưới để thao tác nhanh.</div>
+      <div class="bottom-tool-actions">
+        <button class="btn-primary" id="bottomSubmitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm ngay</button>
+        <button class="btn-warning" id="bottomRetryBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai</button>
+        <button class="btn-scroll-top-fast" onclick="scrollToTopFast()">⚡ Kéo lên đầu trang</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="floating-top-btn" id="floatingTopBtn" onclick="scrollToTopFast()">⬆ Lên đầu trang</button>
+
+  <script>
+    const QUIZ_CONFIG = {
+      title: "ĐỀ ÔN TẬP TIN HỌC (CHỌN LỌC HAY NHẤT)",
+      subtitle: "Bao gồm: Mức độ Thông hiểu - Vận dụng - Mở rộng kiến thức thực tế",
+      mcqPoint: 0.25,
+      tfPoints: [0, 0.1, 0.25, 0.5, 1.0]
+    };
+
+    const TOPIC_1 = 'CHỦ ĐỀ 1: TRÍ TUỆ NHÂN TẠO (AI)';
+    const TOPIC_2 = 'CHỦ ĐỀ 2: MẠNG MÁY TÍNH VÀ INTERNET';
+    const TOPIC_3 = 'CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HOÁ SỐ';
+
+    const allQuestions = [
+      // CHỦ ĐỀ 1: AI
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 1. Trong các rủi ro của Trí tuệ nhân tạo (AI), hiện tượng \"hộp đen\" (black box) ám chỉ điều gì?",
+        options: {
+          A: "A. AI tiêu thụ quá nhiều điện năng.",
+          B: "B. Con người khó khăn trong việc hiểu và truy xuất cách AI đưa ra các quyết định.",
+          C: "C. AI không thể nhận diện được các vật thể có màu đen.",
+          D: "D. Hệ thống phần cứng AI được bảo mật trong các hộp chứa dữ liệu chống cháy."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 2. Khi một trường học sử dụng AI để tự động chấm bài tự luận của học sinh, rủi ro lớn nhất về mặt đạo đức và giáo dục là gì?",
+        options: {
+          A: "A. Tốc độ chấm bài quá nhanh khiến học sinh hoài nghi.",
+          B: "B. Thiếu tính minh bạch và có thể tồn tại thiên kiến (bias) tiềm ẩn trong bộ dữ liệu huấn luyện.",
+          C: "C. Tiết kiệm được quá nhiều chi phí dẫn đến sự phản đối của giáo viên.",
+          D: "D. Hệ thống tự động thay đổi điểm số của học sinh một cách ngẫu nhiên."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 3. Quá trình huấn luyện các mô hình AI tiên tiến (như ChatGPT) đòi hỏi máy tính phải tự học từ lượng dữ liệu khổng lồ thông qua các mạng nơ-ron nhân tạo nhiều lớp. Công nghệ này gọi là gì?",
+        options: {
+          A: "A. Cloud Computing (Điện toán đám mây).",
+          B: "B. Blockchain (Chuỗi khối).",
+          C: "C. Deep Learning (Học sâu).",
+          D: "D. Internet of Things (Internet vạn vật)."
+        }, ans: "C"
+      },
+      {
+        type: "tf", topicName: TOPIC_1,
+        q: "Câu 4. Đánh giá tính Đúng/Sai của các nhận định về năng lực và rủi ro của Trí tuệ nhân tạo (AI):",
+        items: {
+          a: "a) ChatGPT là một minh chứng mạnh mẽ cho khả năng của AI tạo sinh (Generative AI).",
+          b: "b) Các thành tựu AI hiện nay phần lớn đã đạt mức \"AI tổng quát\" (AGI), thay thế hoàn toàn con người trong mọi việc.",
+          c: "c) Hiện tượng \"hộp đen\" trong AI làm cho việc xác định trách nhiệm pháp lý khi có lỗi xảy ra trở nên khó khăn.",
+          d: "d) Phần mềm IBM Watson for Oncology trong y tế có quyền quyết định phẫu thuật thay cho bác sĩ chuyên khoa."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      },
+
+      // CHỦ ĐỀ 2: MẠNG
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 5. Vai trò cốt lõi của giao thức TCP (Transmission Control Protocol) trong hệ thống mạng Internet là gì?",
+        options: {
+          A: "A. Tự động thiết kế và định dạng hiển thị các trang web.",
+          B: "B. Định vị địa chỉ và dẫn đường cho gói tin đi qua các mạng.",
+          C: "C. Đảm bảo việc truyền dữ liệu chính xác, tin cậy thông qua việc chia nhỏ, đánh số và kiểm tra lỗi gói tin.",
+          D: "D. Chuyển đổi qua lại giữa tín hiệu tương tự và tín hiệu số."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 6. Một văn phòng có 5 máy tính kết nối cùng mạng LAN và 1 máy in được cắm cáp USB trực tiếp vào máy tính A. Để 4 máy tính còn lại có thể in ấn bình thường, yêu cầu bắt buộc là gì?",
+        options: {
+          A: "A. Máy tính A phải được bật thường xuyên, đóng vai trò là Print Server và bật tính năng Printer sharing.",
+          B: "B. Cả 5 máy tính đều phải cắm chung một sợi cáp USB thông qua một bộ chia Hub.",
+          C: "C. Máy tính A phải tắt hoàn toàn phần mềm diệt virus và Tường lửa (Firewall) vĩnh viễn.",
+          D: "D. Cần phải lắp thêm một Router Wi-Fi riêng biệt chỉ dùng để kết nối với máy in."
+        }, ans: "A"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 7. Trong môi trường Windows, câu lệnh nào sau đây (thao tác qua Command Prompt) được dùng phổ biến nhất để kiểm tra tính thông suốt kết nối từ máy bạn đến một địa chỉ web hoặc thiết bị khác?",
+        options: {
+          A: "A. ipconfig",
+          B: "B. ping",
+          C: "C. netstat",
+          D: "D. tracert"
+        }, ans: "B"
+      },
+      {
+        type: "tf", topicName: TOPIC_2,
+        q: "Câu 8. Đánh giá tính Đúng/Sai của các phát biểu về thiết bị và định tuyến trong mạng:",
+        items: {
+          a: "a) Switch ưu việt hơn Hub vì nó có khả năng xác định cổng đích để gửi dữ liệu, giúp giảm tình trạng xung đột tín hiệu.",
+          b: "b) Router (Bộ định tuyến) chỉ có tác dụng kết nối nội bộ các thiết bị trong phạm vi một mạng LAN duy nhất.",
+          c: "c) Giao thức IP chịu trách nhiệm cấp phát địa chỉ IP và định tuyến (dẫn đường) cho gói tin trên Internet.",
+          d: "d) Modem chỉ có chức năng duy nhất là phát sóng Wi-Fi cho các thiết bị di động."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf", topicName: TOPIC_2,
+        q: "Câu 9. Khi thực hành chia sẻ tài nguyên (tệp, thư mục) trên hệ điều hành Windows, các thao tác và nguyên tắc sau là Đúng hay Sai?",
+        items: {
+          a: "a) Để các máy tính có thể \"nhìn thấy\" nhau trong mạng, người dùng cần bật tính năng Network Discovery.",
+          b: "b) Khi thiết lập quyền \"Read\" (Chỉ đọc) cho thư mục, các máy khác trong mạng vẫn có thể xóa nội dung bên trong.",
+          c: "c) Tường lửa (Firewall) của Windows Defender đôi khi chặn quyền truy cập từ bên ngoài, do đó cần cấu hình lại khi chia sẻ.",
+          d: "d) Mặc định, tất cả các tệp tin lưu ngoài màn hình Desktop sẽ tự động được chia sẻ công khai cho toàn mạng."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      },
+
+      // CHỦ ĐỀ 3: ĐẠO ĐỨC
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 10. Bốn khía cạnh nền tảng nhất để rèn luyện thói quen ứng xử nhân văn, có văn hóa trong không gian mạng bao gồm:",
+        options: {
+          A: "A. Khôn khéo, Thông minh, Thấu hiểu, Cạnh tranh.",
+          B: "B. Tôn trọng, Lịch sự, Thấu hiểu, Hỗ trợ.",
+          C: "C. Ẩn danh, Tôn trọng, Phê phán, Lịch sự.",
+          D: "D. Tự do, Bình đẳng, Cạnh tranh, Hỗ trợ."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 11. Bạn vô tình thấy bức ảnh \"dìm hàng\" (khoảnh khắc xấu) của một bạn cùng lớp đang bị phát tán rầm rộ trên nhóm chat. Hành động nào thể hiện đạo đức và sự thấu hiểu nhất?",
+        options: {
+          A: "A. Nhanh chóng tải ảnh về và đăng lên Facebook cá nhân để câu tương tác.",
+          B: "B. Nhắn tin nhắc nhở người gửi gỡ ảnh, không hùa theo lan truyền để bảo vệ danh dự người khác.",
+          C: "C. Cười cợt, bình luận thêm các câu chế giễu để hòa nhập chung với bạn bè trong nhóm.",
+          D: "D. Lưu hình ảnh lại vào máy để sau này mang ra làm công cụ trêu chọc bạn đó."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 12. Thuật ngữ tiếng Anh nào chuyên dùng để chỉ các hành vi cố ý lợi dụng mạng xã hội, tin nhắn để bắt nạt, đe dọa, xúc phạm hoặc quấy rối tinh thần người khác?",
+        options: {
+          A: "A. Phishing.",
+          B: "B. Cyberbullying.",
+          C: "C. Deepfake.",
+          D: "D. Spamming."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 13. Để bảo vệ các tài khoản trực tuyến (Facebook, Gmail) không bị kẻ gian chiếm đoạt ngay cả khi vô tình lộ mật khẩu, chuyên gia an ninh mạng khuyến cáo phải làm gì?",
+        options: {
+          A: "A. Sử dụng chế độ duyệt web ẩn danh (Incognito Mode) liên tục.",
+          B: "B. Ẩn tất cả ảnh đại diện và hạn chế người lạ bình luận.",
+          C: "C. Kích hoạt tính năng Xác thực hai yếu tố (2FA - Two-Factor Authentication).",
+          D: "D. Chỉ đăng nhập mạng Wi-Fi công cộng ở các quán cafe lớn."
+        }, ans: "C"
+      },
+      {
+        type: "tf", topicName: TOPIC_3,
+        q: "Câu 14. Đánh giá tính Đúng/Sai của các hiện tượng và hành vi khi tham gia không gian mạng:",
+        items: {
+          a: "a) Giao tiếp qua mạng thiếu đi các tín hiệu phi ngôn ngữ (như nét mặt, giọng điệu), do đó dễ dẫn đến sự hiểu lầm.",
+          b: "b) Thường xuyên sử dụng từ lóng, ngôn từ kích động là cách tốt nhất để thể hiện cá tính bản thân.",
+          c: "c) Kỹ thuật \"Phishing\" là hình thức kẻ gian giả mạo email/tin nhắn từ tổ chức uy tín để lừa lấy mật khẩu, mã OTP.",
+          d: "d) Chia sẻ một tin tức chưa được kiểm chứng nhưng có nội dung hấp dẫn là hành vi hợp pháp và được khuyến khích."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      }
+    ];
+
+    let currentList = [];
+    let userAnswers = {};
+    let isSubmitted = false;
+
+    function scrollToTopFast() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+    window.addEventListener("scroll", () => {
+      const floatingBtn = document.getElementById("floatingTopBtn");
+      if (window.scrollY > 320) floatingBtn.classList.add("visible");
+      else floatingBtn.classList.remove("visible");
+    });
+
+    function normalizeTF(val) {
+      const s = String(val || "").trim().toUpperCase();
+      return (s === "Đ" || s === "D" || s === "ĐÚNG" || s === "TRUE") ? "Đ" : "S";
+    }
+
+    function getQuestionMaxScore(item) {
+      return item.type === "tf" ? QUIZ_CONFIG.tfPoints[4] : QUIZ_CONFIG.mcqPoint;
+    }
+
+    function getQuestionEarnedScore(item, ansObj) {
+      if (!ansObj) return 0;
+      if (item.type === "tf") {
+        let correctSub = 0;
+        ["a", "b", "c", "d"].forEach(k => { if (ansObj[k] === normalizeTF(item.ans[k])) correctSub++; });
+        return QUIZ_CONFIG.tfPoints[correctSub] || 0;
+      }
+      return ansObj === item.ans ? QUIZ_CONFIG.mcqPoint : 0;
+    }
+
+    function isQuestionFullyAnswered(item, ansObj) {
+      if (!ansObj) return false;
+      if (item.type === "tf") return ["a", "b", "c", "d"].every(k => ansObj[k]);
+      return Boolean(ansObj);
+    }
+
+    function setupHeaderAndTopics() {
+      document.title = QUIZ_CONFIG.title;
+      document.getElementById("quizTitle").textContent = QUIZ_CONFIG.title;
+      document.getElementById("quizSubtitle").textContent = QUIZ_CONFIG.subtitle;
+      const select = document.getElementById("topicSelect");
+      select.innerHTML = `<option value="all">Tất cả chủ đề (${allQuestions.length} câu)</option>`;
+      const topicCounts = {};
+      allQuestions.forEach(item => { topicCounts[item.topicName] = (topicCounts[item.topicName] || 0) + 1; });
+      Object.keys(topicCounts).forEach(t => {
+        select.innerHTML += `<option value="${t}">${t} (${topicCounts[t]} câu)</option>`;
+      });
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initQuiz(shuffle = false, customList = null) {
+      const topic = document.getElementById("topicSelect").value;
+      const qType = document.getElementById("typeSelect").value;
+      const mode = document.getElementById("modeSelect").value;
+
+      if (customList) currentList = customList;
+      else {
+        currentList = allQuestions.filter(item => (topic === "all" || item.topicName === topic) && (qType === "all" || item.type === qType));
+        if (shuffle) currentList = shuffleArray(currentList);
+      }
+      
+      userAnswers = {}; isSubmitted = false;
+      const showSubmit = mode === "exam";
+      document.getElementById("submitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("bottomSubmitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("retryWrongBtn").style.display = "none";
+      document.getElementById("bottomRetryBtn").style.display = "none";
+      renderQuestions(); updateStats(); scrollToTopFast();
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById("quizContainer");
+      const mode = document.getElementById("modeSelect").value;
+      container.innerHTML = "";
+      if (currentList.length === 0) {
+        container.innerHTML = `<div class="question-card" style="text-align:center; color: var(--muted); padding: 28px;">Không có câu hỏi nào.</div>`;
+        return;
+      }
+      currentList.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+        if (item.type === "tf") renderTFCard(card, item, index, mode);
+        else renderMCQCard(card, item, index, mode);
+        container.appendChild(card);
+      });
+    }
+
+    function renderMCQCard(card, item, index, mode) {
+      const chosen = userAnswers[index];
+      const showResult = (mode === "instant" && chosen) || (mode === "exam" && isSubmitted);
+      let optionsHTML = "";
+      ["A", "B", "C", "D"].forEach(key => {
+        let btnClass = "option-btn";
+        if (chosen === key) btnClass += " selected";
+        if (showResult) {
+          if (key === item.ans) btnClass += " correct";
+          else if (chosen === key) btnClass += " wrong";
+        }
+        const dis = (mode === "instant" && chosen) || isSubmitted ? "disabled" : "";
+        optionsHTML += `<button class="${btnClass}" ${dis} onclick="selectMCQ(${index}, '${key}')"><span>${item.options[key]}</span></button>`;
+      });
+
+      let feedbackHTML = `<div class="feedback"></div>`;
+      if (showResult) {
+        if (chosen === item.ans) feedbackHTML = `<div class="feedback show ok">✓ Chính xác! (+${QUIZ_CONFIG.mcqPoint} điểm)</div>`;
+        else if (chosen) feedbackHTML = `<div class="feedback show err">✗ Sai! (0 điểm) • Đáp án đúng là ${item.ans}.</div>`;
+        else feedbackHTML = `<div class="feedback show err">! Bạn chưa chọn câu này • Đáp án đúng là ${item.ans}.</div>`;
+      }
+      card.innerHTML = `<div class="card-header-tags"><span class="topic-tag">${item.topicName}</span><span class="type-tag">Phần I: ABCD</span></div>
+                        <div class="question-text">${item.q}</div><div class="options-list">${optionsHTML}</div>${feedbackHTML}`;
+    }
+
+    function renderTFCard(card, item, index, mode) {
+      const ansObj = userAnswers[index] || {};
+      const all4Chosen = isQuestionFullyAnswered(item, ansObj);
+      const showSummary = (mode === "instant" && all4Chosen) || (mode === "exam" && isSubmitted);
+      
+      let rowsHTML = "";
+      ["a", "b", "c", "d"].forEach(subKey => {
+        const userSub = ansObj[subKey];
+        const correctSub = normalizeTF(item.ans[subKey]);
+        const showSub = (mode === "instant" && userSub) || (mode === "exam" && isSubmitted);
+        
+        let rowClass = "tf-row";
+        if (showSub) rowClass += (userSub === correctSub) ? " row-correct" : " row-wrong";
+        const dis = (mode === "instant" && userSub) || isSubmitted ? "disabled" : "";
+        
+        let btnDClass = "tf-btn" + (userSub === "Đ" ? " selected" : "");
+        let btnSClass = "tf-btn" + (userSub === "S" ? " selected" : "");
+        if (showSub) {
+          if (correctSub === "Đ") btnDClass += " correct-choice";
+          if (correctSub === "S") btnSClass += " correct-choice";
+          if (userSub === "Đ" && correctSub !== "Đ") btnDClass += " wrong-choice";
+          if (userSub === "S" && correctSub !== "S") btnSClass += " wrong-choice";
+        }
+        rowsHTML += `<div class="${rowClass}"><div class="tf-statement">${item.items[subKey]}</div>
+                     <div class="tf-buttons"><button class="${btnDClass}" ${dis} onclick="selectTF(${index}, '${subKey}', 'Đ')">Đúng</button>
+                     <button class="${btnSClass}" ${dis} onclick="selectTF(${index}, '${subKey}', 'S')">Sai</button></div></div>`;
+      });
+
+      let fbHTML = `<div class="feedback"></div>`;
+      if (showSummary || (mode === "instant" && Object.keys(ansObj).length > 0)) {
+        let correctSubCount = 0;
+        ["a", "b", "c", "d"].forEach(k => { if (ansObj[k] === normalizeTF(item.ans[k])) correctSubCount++; });
+        const earned = QUIZ_CONFIG.tfPoints[correctSubCount];
+        const keyStr = ["a", "b", "c", "d"].map(k => `${k}) ${item.ans[k]}`).join(" • ");
+        if (correctSubCount === 4) fbHTML = `<div class="feedback show ok">✓ Tuyệt vời! Đúng cả 4/4 ý (+${earned} điểm)</div>`;
+        else if (showSummary) fbHTML = `<div class="feedback show ${correctSubCount>0?'partial':'err'}">⚡ Đúng ${correctSubCount}/4 ý (+${earned} điểm) • Đáp án: ${keyStr}</div>`;
+        else fbHTML = `<div class="feedback show partial">Đang làm (${Object.keys(ansObj).length}/4 ý) — Hiện đúng ${correctSubCount} ý (Tạm tính: ${earned} điểm)</div>`;
+      }
+      card.innerHTML = `<div class="card-header-tags"><span class="topic-tag">${item.topicName}</span><span class="type-tag">Phần II: Đúng/Sai</span></div>
+                        <div class="question-text">${item.q}</div><div class="tf-list">${rowsHTML}</div>${fbHTML}`;
+    }
+
+    function selectMCQ(idx, key) {
+      if (isSubmitted || (document.getElementById("modeSelect").value === "instant" && userAnswers[idx])) return;
+      userAnswers[idx] = key; renderQuestions(); updateStats();
+    }
+    function selectTF(idx, sub, val) {
+      if (isSubmitted) return;
+      if (!userAnswers[idx]) userAnswers[idx] = {};
+      if (document.getElementById("modeSelect").value === "instant" && userAnswers[idx][sub]) return;
+      userAnswers[idx][sub] = val; renderQuestions(); updateStats();
+    }
+    function submitExam() { isSubmitted = true; renderQuestions(); updateStats(); scrollToTopFast(); }
+    function retryWrong() {
+      const wrongList = currentList.filter((item, idx) => getQuestionEarnedScore(item, userAnswers[idx]) < getQuestionMaxScore(item));
+      if (wrongList.length) initQuiz(false, wrongList);
+    }
+    
+    function updateStats() {
+      const mode = document.getElementById("modeSelect").value;
+      let ansCount = 0, fullCount = 0, notFullCount = 0, tEarned = 0, tMax = 0;
+      
+      currentList.forEach((item, idx) => {
+        const max = getQuestionMaxScore(item); tMax += max;
+        const ans = userAnswers[idx];
+        const isDone = isQuestionFullyAnswered(item, ans);
+        if (isDone) ansCount++;
+        
+        const hasSelection = item.type === "tf" ? (ans && Object.keys(ans).length > 0) : Boolean(ans);
+        if ((mode === "instant" && hasSelection) || isSubmitted) {
+          const earned = getQuestionEarnedScore(item, ans);
+          tEarned += earned;
+          if (mode === "instant") { if (isDone) { earned === max ? fullCount++ : notFullCount++; } } 
+          else { earned === max ? fullCount++ : notFullCount++; }
+        }
+      });
+
+      document.getElementById("progressText").textContent = `Đã làm: ${ansCount} / ${currentList.length}`;
+      document.getElementById("correctText").textContent = `Đạt tối đa: ${fullCount}`;
+      document.getElementById("wrongText").textContent = `Sai/Thiếu: ${notFullCount}`;
+      document.getElementById("scoreText").textContent = `Điểm: ${tEarned.toFixed(2)} / ${tMax.toFixed(2)}`;
+
+      const canRetry = (mode === "instant" && notFullCount > 0) || (mode === "exam" && isSubmitted && notFullCount > 0);
+      document.getElementById("retryWrongBtn").style.display = canRetry ? "inline-block" : "none";
+      document.getElementById("bottomRetryBtn").style.display = canRetry ? "inline-block" : "none";
+    }
+
+    setupHeaderAndTopics(); initQuiz();
+  </script>
+</body>
+</html>
