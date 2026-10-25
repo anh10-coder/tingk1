@@ -154,152 +154,512 @@
     const TOPIC_3 = 'CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HOÁ SỐ';
 
     const allQuestions = [
-      // CHỦ ĐỀ 1: AI
+      // CHỦ ĐỀ 1: AI (14 câu MCQ, 3 câu TF)
       {
         type: "mcq", topicName: TOPIC_1,
-        q: "Câu 1. Trong các rủi ro của Trí tuệ nhân tạo (AI), hiện tượng \"hộp đen\" (black box) ám chỉ điều gì?",
+        q: "Câu 1. Thuật ngữ AI (Artificial Intelligence) chính thức ra đời tại hội thảo được tổ chức ở đâu?",
         options: {
-          A: "A. AI tiêu thụ quá nhiều điện năng.",
-          B: "B. Con người khó khăn trong việc hiểu và truy xuất cách AI đưa ra các quyết định.",
-          C: "C. AI không thể nhận diện được các vật thể có màu đen.",
-          D: "D. Hệ thống phần cứng AI được bảo mật trong các hộp chứa dữ liệu chống cháy."
-        }, ans: "B"
-      },
-      {
-        type: "mcq", topicName: TOPIC_1,
-        q: "Câu 2. Khi một trường học sử dụng AI để tự động chấm bài tự luận của học sinh, rủi ro lớn nhất về mặt đạo đức và giáo dục là gì?",
-        options: {
-          A: "A. Tốc độ chấm bài quá nhanh khiến học sinh hoài nghi.",
-          B: "B. Thiếu tính minh bạch và có thể tồn tại thiên kiến (bias) tiềm ẩn trong bộ dữ liệu huấn luyện.",
-          C: "C. Tiết kiệm được quá nhiều chi phí dẫn đến sự phản đối của giáo viên.",
-          D: "D. Hệ thống tự động thay đổi điểm số của học sinh một cách ngẫu nhiên."
-        }, ans: "B"
-      },
-      {
-        type: "mcq", topicName: TOPIC_1,
-        q: "Câu 3. Quá trình huấn luyện các mô hình AI tiên tiến (như ChatGPT) đòi hỏi máy tính phải tự học từ lượng dữ liệu khổng lồ thông qua các mạng nơ-ron nhân tạo nhiều lớp. Công nghệ này gọi là gì?",
-        options: {
-          A: "A. Cloud Computing (Điện toán đám mây).",
-          B: "B. Blockchain (Chuỗi khối).",
-          C: "C. Deep Learning (Học sâu).",
-          D: "D. Internet of Things (Internet vạn vật)."
+          A: "A. Đại học Harvard (Mỹ).",
+          B: "B. Đại học Stanford (Mỹ).",
+          C: "C. Đại học Dartmouth (Mỹ).",
+          D: "D. Đại học Oxford (Anh)."
         }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 2. Phép thử Turing, được đưa ra năm 1950 bởi Alan Turing, nhằm mục đích gì?",
+        options: {
+          A: "A. Đánh giá tốc độ xử lý của siêu máy tính.",
+          B: "B. Bước đầu đánh giá khả năng thông minh của máy tính.",
+          C: "C. Kiểm tra khả năng lưu trữ dữ liệu của ổ cứng.",
+          D: "D. Đo lường mức độ tiêu thụ điện năng của robot."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 3. Hệ chuyên gia MYCIN được phát triển tại Đại học Stanford (1972) có chức năng chính là gì?",
+        options: {
+          A: "A. Chẩn đoán các bệnh liên quan đến nhiễm trùng máu và kê đơn thuốc kháng sinh.",
+          B: "B. Tự động hóa dây chuyền lắp ráp ô tô.",
+          C: "C. Dự báo thời tiết và thảm họa tự nhiên.",
+          D: "D. Dịch thuật đa ngôn ngữ theo thời gian thực."
+        }, ans: "A"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 4. Trong y tế, phần mềm IBM Watson for Oncology nổi bật với ứng dụng nào sau đây?",
+        options: {
+          A: "A. Quản lý hồ sơ bệnh án điện tử tập trung.",
+          B: "B. Thay thế hoàn toàn bác sĩ trong phòng mổ.",
+          C: "C. Hỗ trợ các chuyên gia y tế chẩn đoán và hướng điều trị bệnh ung thư.",
+          D: "D. Sản xuất thuốc kháng sinh tự động."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 5. Ứng dụng nào sau đây KHÔNG phải là một ví dụ tiêu biểu của AI trong đời sống hiện nay?",
+        options: {
+          A: "A. Trợ lý ảo Google Assistant, Siri.",
+          B: "B. Hệ thống nhận dạng khuôn mặt trên điện thoại thông minh.",
+          C: "C. Ấm đun nước tự động ngắt điện khi nước sôi.",
+          D: "D. Tính năng dịch tự động của Google Dịch."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 6. Hệ thống ChatGPT của OpenAI là một minh chứng điển hình cho xu hướng phát triển nào của AI?",
+        options: {
+          A: "A. AI hẹp (Narrow AI) chuyên biệt cho điều khiển robot.",
+          B: "B. AI tạo sinh (Generative AI).",
+          C: "C. Hệ chuyên gia dựa trên luật (Rule-based expert system) nguyên thủy.",
+          D: "D. AI nhận thức hình ảnh 3D."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 7. Một trong những rủi ro lớn nhất về mặt đạo đức khi phát triển các hệ thống AI tiên tiến là gì?",
+        options: {
+          A: "A. AI sẽ tiêu thụ cạn kiệt tài nguyên thiên nhiên của trái đất.",
+          B: "B. Thiếu tính minh bạch trong quá trình AI đưa ra quyết định (hiện tượng hộp đen).",
+          C: "C. AI không thể nhận diện được chữ viết tay.",
+          D: "D. Máy móc bị rỉ sét do hoạt động quá công suất."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 8. Khái niệm \"AI tổng quát\" (AGI - Artificial General Intelligence) được hiểu là gì?",
+        options: {
+          A: "A. Trí tuệ nhân tạo chỉ chuyên giải quyết một nhiệm vụ duy nhất (ví dụ: chơi cờ).",
+          B: "B. Khả năng trí tuệ máy móc đạt mức ngang bằng con người, có thể áp dụng tri thức từ lĩnh vực này sang lĩnh vực khác.",
+          C: "C. Hệ thống AI chuyên biệt dùng trong quân sự.",
+          D: "D. Một chương trình máy tính dịch văn bản đơn giản."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 9. Khi sử dụng Google Maps để tìm đường, ứng dụng đã tận dụng AI chủ yếu để làm gì?",
+        options: {
+          A: "A. Nhận dạng biển số xe trên đường.",
+          B: "B. Phân tích dữ liệu giao thông theo thời gian thực và định tuyến tối ưu.",
+          C: "C. Tự động lái xe thay con người.",
+          D: "D. Dịch các biển báo giao thông ra nhiều ngôn ngữ."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 10. Sự phát triển mạnh mẽ của robot công nghiệp có tích hợp AI trong lĩnh vực sản xuất mang lại lợi ích gì nổi bật nhất?",
+        options: {
+          A: "A. Thay thế hoàn toàn vai trò của giám đốc điều hành.",
+          B: "B. Tự động hóa các dây chuyền lắp ráp, kiểm tra chất lượng, lặp đi lặp lại một cách hiệu quả và chính xác.",
+          C: "C. Thiết kế lại toàn bộ quy trình tài chính của nhà máy.",
+          D: "D. Chẩn đoán bệnh nghề nghiệp cho công nhân."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 11. Theo tài liệu, đặc trưng \"khả năng suy luận\" của AI được mô tả như thế nào?",
+        options: {
+          A: "A. Nắm bắt thông tin từ dữ liệu để điều chỉnh hành vi.",
+          B: "B. Vận dụng logic và tri thức đã được cung cấp để đưa ra quyết định hoặc kết luận.",
+          C: "C. Hiểu và xử lý ngôn ngữ tự nhiên của con người.",
+          D: "D. Cảm nhận môi trường thông qua các cảm biến."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 12. Trong nông nghiệp, AI KHÔNG được sử dụng phổ biến để làm công việc nào sau đây?",
+        options: {
+          A: "A. Tối ưu hóa quy trình chăm sóc cây trồng, vật nuôi.",
+          B: "B. Dự đoán mùa vụ và định thời điểm thu hoạch.",
+          C: "C. Trực tiếp thay đổi cấu trúc gen của cây trồng mà không cần can thiệp sinh học.",
+          D: "D. Hợp lý hóa việc tưới tiêu dựa trên dữ liệu thời tiết, đất đai."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 13. Sự kiện lịch sử nào đánh dấu cột mốc robot mang hình dáng con người lần đầu tiên được tích hợp nhiều tính năng thông minh của AI?",
+        options: {
+          A: "A. Sự ra đời của robot Asimo (Honda) năm 1986.",
+          B: "B. Sự xuất hiện của ChatGPT năm 2022.",
+          C: "C. Máy tính Deep Blue đánh bại nhà vô địch cờ vua thế giới năm 1997.",
+          D: "D. Robot Sophia được cấp quyền công dân năm 2017."
+        }, ans: "A"
+      },
+      {
+        type: "mcq", topicName: TOPIC_1,
+        q: "Câu 14. Sự phát triển của AI đang làm dấy lên những lo ngại sâu sắc về vấn đề gì trong thị trường lao động?",
+        options: {
+          A: "A. Tăng cường khả năng thiếu hụt máy móc.",
+          B: "B. Nguy cơ tự động hóa thay thế nhiều công việc, dẫn đến áp lực thất nghiệp cho con người.",
+          C: "C. Làm giảm năng suất lao động chung của toàn xã hội.",
+          D: "D. Đòi hỏi con người phải làm việc tay chân nhiều hơn."
+        }, ans: "B"
       },
       {
         type: "tf", topicName: TOPIC_1,
-        q: "Câu 4. Đánh giá tính Đúng/Sai của các nhận định về năng lực và rủi ro của Trí tuệ nhân tạo (AI):",
+        q: "Câu 15. Đánh giá tính Đúng/Sai của các phát biểu về Trí tuệ nhân tạo (AI):",
         items: {
-          a: "a) ChatGPT là một minh chứng mạnh mẽ cho khả năng của AI tạo sinh (Generative AI).",
-          b: "b) Các thành tựu AI hiện nay phần lớn đã đạt mức \"AI tổng quát\" (AGI), thay thế hoàn toàn con người trong mọi việc.",
-          c: "c) Hiện tượng \"hộp đen\" trong AI làm cho việc xác định trách nhiệm pháp lý khi có lỗi xảy ra trở nên khó khăn.",
-          d: "d) Phần mềm IBM Watson for Oncology trong y tế có quyền quyết định phẫu thuật thay cho bác sĩ chuyên khoa."
+          a: "a) Trí tuệ nhân tạo được hiểu là khả năng máy tính làm những việc mang tính trí tuệ của con người như suy luận, hiểu ngôn ngữ.",
+          b: "b) Hệ chuyên gia (Expert System) là một trong những ứng dụng mới xuất hiện trong khoảng 5 năm trở lại đây nhờ sự phát triển của Internet.",
+          c: "c) AI tạo sinh (như ChatGPT) không chỉ cung cấp câu trả lời có sẵn mà còn có thể tự sinh ra văn bản, đoạn mã lập trình mới dựa trên ngữ cảnh.",
+          d: "d) Hiện nay, giới khoa học đã hoàn toàn kiểm soát được mọi rủi ro về đạo đức và an ninh khi phát triển AI."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf", topicName: TOPIC_1,
+        q: "Câu 16. Xác định tính Đúng/Sai về các đặc trưng cơ bản của hệ thống Trí tuệ nhân tạo:",
+        items: {
+          a: "a) Khả năng hiểu ngôn ngữ giúp AI có thể tương tác với người dùng qua văn bản hoặc giọng nói.",
+          b: "b) Khả năng nhận thức môi trường của AI chủ yếu được thực hiện thông qua việc sử dụng các cảm biến và camera.",
+          c: "c) Trí tuệ nhân tạo hiện tại đã có khả năng tự nhận thức bản thân (có ý thức) giống hệt như bộ não sinh học của con người.",
+          d: "d) Khả năng học cho phép AI nắm bắt thông tin từ dữ liệu để cải thiện và điều chỉnh hành vi theo thời gian."
+        }, ans: { a: "Đ", b: "Đ", c: "S", d: "Đ" }
+      },
+      {
+        type: "tf", topicName: TOPIC_1,
+        q: "Câu 17. Đánh giá tính Đúng/Sai về ứng dụng và rủi ro của AI:",
+        items: {
+          a: "a) Trợ lí ảo (Google Assistant, Siri) sử dụng AI để nhận diện giọng nói và hỗ trợ thực hiện các tác vụ trên điện thoại.",
+          b: "b) Rủi ro về \"hộp đen\" trong AI đồng nghĩa với việc vỏ ngoài của các máy chủ chứa AI luôn được sơn màu đen để bảo mật.",
+          c: "c) Việc ứng dụng AI vào phân tích, xử lý dữ liệu lớn (Big Data) giúp nâng cao hiệu quả và phát hiện gian lận trong tài chính, ngân hàng.",
+          d: "d) Các hệ thống nhận dạng khuôn mặt ứng dụng AI hoàn toàn không có nguy cơ vi phạm quyền riêng tư của cá nhân."
         }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
       },
 
-      // CHỦ ĐỀ 2: MẠNG
+      // CHỦ ĐỀ 2: MẠNG MÁY TÍNH VÀ INTERNET (14 câu MCQ, 4 câu TF)
       {
         type: "mcq", topicName: TOPIC_2,
-        q: "Câu 5. Vai trò cốt lõi của giao thức TCP (Transmission Control Protocol) trong hệ thống mạng Internet là gì?",
+        q: "Câu 18. Trong mạng cục bộ (LAN), thiết bị nào có khả năng xác định cổng của máy nhận để truyền dữ liệu tới đích, giúp giảm thiểu tình trạng xung đột tín hiệu?",
         options: {
-          A: "A. Tự động thiết kế và định dạng hiển thị các trang web.",
-          B: "B. Định vị địa chỉ và dẫn đường cho gói tin đi qua các mạng.",
-          C: "C. Đảm bảo việc truyền dữ liệu chính xác, tin cậy thông qua việc chia nhỏ, đánh số và kiểm tra lỗi gói tin.",
-          D: "D. Chuyển đổi qua lại giữa tín hiệu tương tự và tín hiệu số."
+          A: "A. Hub.",
+          B: "B. Switch.",
+          C: "C. Cáp mạng UTP.",
+          D: "D. Repeater."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 19. WAP (Wireless Access Point) có chức năng chính là gì trong mạng máy tính?",
+        options: {
+          A: "A. Làm trung tâm lưu trữ toàn bộ dữ liệu của mạng nội bộ.",
+          B: "B. Cung cấp kết nối không dây (Wi-Fi) cho các thiết bị đầu cuối vào mạng LAN.",
+          C: "C. Chuyển đổi tín hiệu số sang tín hiệu quang học.",
+          D: "D. Định tuyến đường đi của gói tin ra Internet toàn cầu."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 20. Thiết bị nào có nhiệm vụ kết nối các mạng LAN khác nhau và định tuyến (tìm đường đi tốt nhất) cho các gói dữ liệu truyền qua Internet?",
+        options: {
+          A: "A. Switch.",
+          B: "B. Hub.",
+          C: "C. Router.",
+          D: "D. Modem."
         }, ans: "C"
       },
       {
         type: "mcq", topicName: TOPIC_2,
-        q: "Câu 6. Một văn phòng có 5 máy tính kết nối cùng mạng LAN và 1 máy in được cắm cáp USB trực tiếp vào máy tính A. Để 4 máy tính còn lại có thể in ấn bình thường, yêu cầu bắt buộc là gì?",
+        q: "Câu 21. Modem thực hiện chức năng chuyển đổi gì để máy tính có thể truyền dữ liệu qua đường dây viễn thông (như cáp quang, đường dây điện thoại)?",
         options: {
-          A: "A. Máy tính A phải được bật thường xuyên, đóng vai trò là Print Server và bật tính năng Printer sharing.",
-          B: "B. Cả 5 máy tính đều phải cắm chung một sợi cáp USB thông qua một bộ chia Hub.",
-          C: "C. Máy tính A phải tắt hoàn toàn phần mềm diệt virus và Tường lửa (Firewall) vĩnh viễn.",
-          D: "D. Cần phải lắp thêm một Router Wi-Fi riêng biệt chỉ dùng để kết nối với máy in."
+          A: "A. Chuyển đổi giữa tín hiệu số (digital) của máy tính và tín hiệu tương tự (analog) của đường truyền dẫn.",
+          B: "B. Chuyển đổi dữ liệu văn bản thành hình ảnh.",
+          C: "C. Chuyển đổi giao thức IPv4 sang IPv6.",
+          D: "D. Chuyển đổi nguồn điện xoay chiều thành một chiều."
         }, ans: "A"
       },
       {
         type: "mcq", topicName: TOPIC_2,
-        q: "Câu 7. Trong môi trường Windows, câu lệnh nào sau đây (thao tác qua Command Prompt) được dùng phổ biến nhất để kiểm tra tính thông suốt kết nối từ máy bạn đến một địa chỉ web hoặc thiết bị khác?",
+        q: "Câu 22. Loại giắc cắm nào được sử dụng phổ biến nhất để bấm hai đầu cáp mạng UTP khi kết nối các thiết bị trong mạng LAN?",
         options: {
-          A: "A. ipconfig",
-          B: "B. ping",
-          C: "C. netstat",
-          D: "D. tracert"
+          A: "A. RJ11.",
+          B: "B. HDMI.",
+          C: "C. USB Type-C.",
+          D: "D. RJ45."
+        }, ans: "D"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 23. Giao thức mạng (Network Protocol) được định nghĩa là gì?",
+        options: {
+          A: "A. Là thiết bị phần cứng để khuếch đại tín hiệu Wi-Fi.",
+          B: "B. Là tập hợp các quy định về cách thức giao tiếp để truyền dữ liệu một cách chính xác, tin cậy giữa các thiết bị.",
+          C: "C. Là phần mềm diệt virus bảo vệ mạng máy tính.",
+          D: "D. Là tốc độ truyền tải tối đa của đường truyền cáp quang."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 24. Trong bộ giao thức TCP/IP, vai trò chính của giao thức IP (Internet Protocol) là gì?",
+        options: {
+          A: "A. Đảm bảo dữ liệu không bị thất lạc bằng cách chia nhỏ và kiểm tra lỗi.",
+          B: "B. Quy định cách thức đánh địa chỉ cho thiết bị và định tuyến dẫn đường cho các gói dữ liệu.",
+          C: "C. Tải nội dung trang web về trình duyệt.",
+          D: "D. Mã hóa mật khẩu người dùng trước khi gửi đi."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 25. Vai trò của giao thức TCP (Transmission Control Protocol) là gì?",
+        options: {
+          A: "A. Định vị địa chỉ của máy chủ nhận email.",
+          B: "B. Chịu trách nhiệm bảo mật mạng Wi-Fi (giống như WPA2).",
+          C: "C. Đảm bảo truyền dữ liệu tin cậy bằng cách chia dữ liệu thành nhiều gói, đánh số thứ tự và có cơ chế gửi lại khi bị lỗi.",
+          D: "D. Quản lý việc chia sẻ máy in trong mạng nội bộ."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 26. Trong mạng cục bộ sử dụng Windows, để các máy tính có thể kết nối và sử dụng chung tài nguyên (tệp, máy in), tính năng nào sau đây BẮT BUỘC phải được bật?",
+        options: {
+          A: "A. Chế độ máy bay (Airplane mode).",
+          B: "B. Tường lửa (Firewall) ở mức bảo mật cao nhất.",
+          C: "C. Network discovery và File and printer sharing.",
+          D: "D. Tính năng định vị toàn cầu (GPS)."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 27. Khi chia sẻ một thư mục trên Windows, nếu bạn cấp quyền truy cập là \"Read\" cho đối tượng \"Everyone\", điều này có nghĩa là gì?",
+        options: {
+          A: "A. Tất cả mọi người trên mạng đều có thể xem, sửa nội dung và xóa tệp tin trong thư mục đó.",
+          B: "B. Tất cả mọi người trên mạng chỉ có thể xem, mở, hoặc sao chép tệp tin, nhưng không được phép sửa hay xóa.",
+          C: "C. Chỉ những người có mật khẩu quản trị viên mới được xem tệp tin.",
+          D: "D. Thư mục đó bị khóa hoàn toàn, không ai truy cập được."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 28. Một văn phòng có 4 máy tính kết nối chung một mạng LAN, nhưng chỉ có 1 máy in kết nối cáp USB trực tiếp vào Máy A. Để 3 máy còn lại có thể in được, cách giải quyết đúng nhất là:",
+        options: {
+          A: "A. Phải cắm rút cáp USB liên tục giữa các máy tính khi cần in.",
+          B: "B. Máy A phải bật tính năng chia sẻ máy in (Printer sharing) và đóng vai trò làm máy chủ in (Print Server).",
+          C: "C. Máy A cần được nâng cấp card màn hình mạnh hơn.",
+          D: "D. Phải thiết lập lại địa chỉ MAC cho toàn bộ 4 máy tính giống hệt nhau."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 29. Địa chỉ IP phiên bản 4 (IPv4) được biểu diễn dưới dạng bao nhiêu bit và thường được viết thành mấy cụm số thập phân?",
+        options: {
+          A: "A. 16 bit, 2 cụm số.",
+          B: "B. 32 bit, 4 cụm số.",
+          C: "C. 64 bit, 6 cụm số.",
+          D: "D. 128 bit, 8 cụm số."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 30. Khác với địa chỉ IP có thể thay đổi linh hoạt theo mạng kết nối, mỗi thiết bị phần cứng mạng (card mạng) đều có một định danh vật lý duy nhất không đổi do nhà sản xuất gán. Địa chỉ này được gọi là gì?",
+        options: {
+          A: "A. Địa chỉ URL.",
+          B: "B. Địa chỉ DNS.",
+          C: "C. Địa chỉ MAC (Media Access Control).",
+          D: "D. Cổng Default Gateway."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_2,
+        q: "Câu 31. Dịch vụ phân giải tên miền (DNS) có vai trò gì trên Internet?",
+        options: {
+          A: "A. Chuyển đổi tín hiệu mạng từ dạng cáp quang sang sóng Wi-Fi.",
+          B: "B. Dịch các tên miền dễ nhớ (như google.com) thành địa chỉ IP để máy tính có thể định tuyến được.",
+          C: "C. Chia sẻ máy in giữa các thiết bị trong mạng LAN.",
+          D: "D. Ngăn chặn sự lây lan của virus máy tính."
         }, ans: "B"
       },
       {
         type: "tf", topicName: TOPIC_2,
-        q: "Câu 8. Đánh giá tính Đúng/Sai của các phát biểu về thiết bị và định tuyến trong mạng:",
+        q: "Câu 32. Đánh giá tính Đúng/Sai của các phát biểu về thiết bị mạng LAN:",
         items: {
-          a: "a) Switch ưu việt hơn Hub vì nó có khả năng xác định cổng đích để gửi dữ liệu, giúp giảm tình trạng xung đột tín hiệu.",
-          b: "b) Router (Bộ định tuyến) chỉ có tác dụng kết nối nội bộ các thiết bị trong phạm vi một mạng LAN duy nhất.",
-          c: "c) Giao thức IP chịu trách nhiệm cấp phát địa chỉ IP và định tuyến (dẫn đường) cho gói tin trên Internet.",
-          d: "d) Modem chỉ có chức năng duy nhất là phát sóng Wi-Fi cho các thiết bị di động."
-        }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+          a: "a) Việc sử dụng Switch thay thế cho Hub giúp giảm đáng kể tình trạng xung đột tín hiệu vì Switch biết gửi dữ liệu đến đích chính xác.",
+          b: "b) WAP (Wireless Access Point) cho phép các thiết bị di động kết nối vào mạng cục bộ thông qua cáp quang.",
+          c: "c) Cáp UTP thường có 8 lõi dây đồng xoắn lại thành 4 cặp để truyền tải tín hiệu mạng.",
+          d: "d) Để kết nối mạng LAN của một gia đình ra ngoài Internet rộng lớn, thiết bị bắt buộc phải có là Router (hoặc Modem Router)."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "Đ" }
       },
       {
         type: "tf", topicName: TOPIC_2,
-        q: "Câu 9. Khi thực hành chia sẻ tài nguyên (tệp, thư mục) trên hệ điều hành Windows, các thao tác và nguyên tắc sau là Đúng hay Sai?",
+        q: "Câu 33. Xác định tính Đúng/Sai của các chức năng giao thức mạng:",
         items: {
-          a: "a) Để các máy tính có thể \"nhìn thấy\" nhau trong mạng, người dùng cần bật tính năng Network Discovery.",
-          b: "b) Khi thiết lập quyền \"Read\" (Chỉ đọc) cho thư mục, các máy khác trong mạng vẫn có thể xóa nội dung bên trong.",
-          c: "c) Tường lửa (Firewall) của Windows Defender đôi khi chặn quyền truy cập từ bên ngoài, do đó cần cấu hình lại khi chia sẻ.",
-          d: "d) Mặc định, tất cả các tệp tin lưu ngoài màn hình Desktop sẽ tự động được chia sẻ công khai cho toàn mạng."
+          a: "a) Giao thức mạng là những quy định chung bắt buộc các thiết bị phải tuân thủ để có thể giao tiếp, trao đổi dữ liệu với nhau.",
+          b: "b) Giao thức IP chịu trách nhiệm đảm bảo các gói tin không bao giờ bị thất lạc trong quá trình truyền.",
+          c: "c) Trong bộ TCP/IP, giao thức TCP có nhiệm vụ chia nhỏ dữ liệu thành các gói tin và sắp xếp lại chúng tại máy nhận.",
+          d: "d) SMTP, POP3, IMAP là các giao thức chuyên dụng phục vụ cho việc gửi và nhận thư điện tử (email)."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "Đ" }
+      },
+      {
+        type: "tf", topicName: TOPIC_2,
+        q: "Câu 34. Đánh giá tính Đúng/Sai về thiết lập chia sẻ tài nguyên trên Windows:",
+        items: {
+          a: "a) Khi chia sẻ tài nguyên, người dùng thiết lập quyền \"Read/Write\" thì máy khác vừa có thể xem, vừa có thể sửa và xóa dữ liệu.",
+          b: "b) Tường lửa (Firewall) không bao giờ can thiệp hay chặn các kết nối chia sẻ tệp tin trong mạng LAN.",
+          c: "c) Mục Public folder trên Windows theo mặc định luôn được mở chia sẻ công khai cho toàn thế giới.",
+          d: "d) Một máy in kết nối qua cổng USB vào máy tính hoàn toàn có thể phục vụ in ấn cho nhiều máy tính khác thông qua mạng nội bộ."
+        }, ans: { a: "Đ", b: "S", c: "S", d: "Đ" }
+      },
+      {
+        type: "tf", topicName: TOPIC_2,
+        q: "Câu 35. Đánh giá tính Đúng/Sai của các thao tác thực hành cấu hình mạng:",
+        items: {
+          a: "a) Lệnh ping được sử dụng để kiểm tra kết nối mạng giữa hai thiết bị có thông suốt hay không.",
+          b: "b) Việc chia sẻ máy in trên mạng LAN sẽ làm giảm tốc độ xử lý phần cứng của máy in.",
+          c: "c) Mạng Wi-Fi cũng được coi là một dạng mạng nội bộ (LAN) nhưng truyền tín hiệu qua môi trường không dây.",
+          d: "d) Nếu một máy tính thiết lập Tường lửa chặn hoàn toàn mọi kết nối đến, nó vẫn có thể chia sẻ tệp cho máy tính khác lấy dữ liệu bình thường."
         }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
       },
 
-      // CHỦ ĐỀ 3: ĐẠO ĐỨC
+      // CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HOÁ SỐ (12 câu MCQ, 3 câu TF)
       {
         type: "mcq", topicName: TOPIC_3,
-        q: "Câu 10. Bốn khía cạnh nền tảng nhất để rèn luyện thói quen ứng xử nhân văn, có văn hóa trong không gian mạng bao gồm:",
+        q: "Câu 36. Không gian mạng (Cyber space) được định nghĩa là môi trường được tạo ra chủ yếu dựa trên nền tảng nào?",
         options: {
-          A: "A. Khôn khéo, Thông minh, Thấu hiểu, Cạnh tranh.",
+          A: "A. Công nghệ vệ tinh nhân tạo và đài phát thanh.",
+          B: "B. Mạng lưới các đường cáp quang ngầm dưới biển.",
+          C: "C. Mạng máy tính, Internet, cùng các dịch vụ và phần mềm trực tuyến.",
+          D: "D. Hệ thống các siêu máy tính của chính phủ."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 37. Đặc điểm nào sau đây là NHƯỢC ĐIỂM lớn nhất trong quá trình giao tiếp qua không gian mạng so với giao tiếp trực tiếp ngoài đời thực?",
+        options: {
+          A: "A. Tốc độ truyền tải thông tin quá chậm.",
+          B: "B. Bị giới hạn bởi khoảng cách địa lý.",
+          C: "C. Thiếu đi các tín hiệu phi ngôn ngữ (cử chỉ, nét mặt, ánh mắt) dễ dẫn đến hiểu lầm cảm xúc.",
+          D: "D. Chi phí thực hiện một cuộc gọi video quá đắt đỏ."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 38. Trong bộ quy tắc ứng xử trên mạng, 4 khía cạnh trọng tâm để thể hiện tính nhân văn bao gồm:",
+        options: {
+          A: "A. Tự do, Cạnh tranh, Tôn trọng, Bảo mật.",
           B: "B. Tôn trọng, Lịch sự, Thấu hiểu, Hỗ trợ.",
-          C: "C. Ẩn danh, Tôn trọng, Phê phán, Lịch sự.",
-          D: "D. Tự do, Bình đẳng, Cạnh tranh, Hỗ trợ."
+          C: "C. Ẩn danh, Khôn khéo, Thông minh, Bao dung.",
+          D: "D. Tôn trọng, Lịch sự, Thẳng thắn, Công khai."
         }, ans: "B"
       },
       {
         type: "mcq", topicName: TOPIC_3,
-        q: "Câu 11. Bạn vô tình thấy bức ảnh \"dìm hàng\" (khoảnh khắc xấu) của một bạn cùng lớp đang bị phát tán rầm rộ trên nhóm chat. Hành động nào thể hiện đạo đức và sự thấu hiểu nhất?",
+        q: "Câu 39. Hành động nào dưới đây VI PHẠM nguyên tắc ứng xử nhân văn (tính Lịch sự và Tôn trọng) trên không gian mạng?",
         options: {
-          A: "A. Nhanh chóng tải ảnh về và đăng lên Facebook cá nhân để câu tương tác.",
-          B: "B. Nhắn tin nhắc nhở người gửi gỡ ảnh, không hùa theo lan truyền để bảo vệ danh dự người khác.",
-          C: "C. Cười cợt, bình luận thêm các câu chế giễu để hòa nhập chung với bạn bè trong nhóm.",
-          D: "D. Lưu hình ảnh lại vào máy để sau này mang ra làm công cụ trêu chọc bạn đó."
+          A: "A. Phản biện lại một ý kiến trái chiều bằng những lập luận logic, không dùng từ ngữ công kích cá nhân.",
+          B: "B. Đăng tải hình ảnh dìm hàng, ảnh nhạy cảm của bạn bè lên mạng để làm trò đùa cho mọi người.",
+          C: "C. Trích dẫn đầy đủ nguồn gốc khi chia sẻ lại một bài viết của người khác.",
+          D: "D. Báo cáo (Report) các tài khoản phát tán thông tin độc hại, sai sự thật."
         }, ans: "B"
       },
       {
         type: "mcq", topicName: TOPIC_3,
-        q: "Câu 12. Thuật ngữ tiếng Anh nào chuyên dùng để chỉ các hành vi cố ý lợi dụng mạng xã hội, tin nhắn để bắt nạt, đe dọa, xúc phạm hoặc quấy rối tinh thần người khác?",
+        q: "Câu 40. Khía cạnh \"Thấu hiểu\" trong giao tiếp mạng được biểu hiện rõ nhất qua hành động nào?",
         options: {
-          A: "A. Phishing.",
-          B: "B. Cyberbullying.",
-          C: "C. Deepfake.",
-          D: "D. Spamming."
+          A: "A. Luôn tìm cách tranh luận đến cùng để chứng minh mình đúng.",
+          B: "B. Đặt mình vào hoàn cảnh của người khác, thông cảm với những suy nghĩ và khó khăn của họ trước khi bình luận.",
+          C: "C. Liên tục gửi tin nhắn động viên dù người nhận đã yêu cầu dừng lại.",
+          D: "D. Chỉ kết bạn với những người có chung sở thích."
         }, ans: "B"
       },
       {
         type: "mcq", topicName: TOPIC_3,
-        q: "Câu 13. Để bảo vệ các tài khoản trực tuyến (Facebook, Gmail) không bị kẻ gian chiếm đoạt ngay cả khi vô tình lộ mật khẩu, chuyên gia an ninh mạng khuyến cáo phải làm gì?",
+        q: "Câu 41. Thuật ngữ \"Cyberbullying\" dùng để chỉ hành vi nào sau đây trên không gian mạng?",
         options: {
-          A: "A. Sử dụng chế độ duyệt web ẩn danh (Incognito Mode) liên tục.",
-          B: "B. Ẩn tất cả ảnh đại diện và hạn chế người lạ bình luận.",
-          C: "C. Kích hoạt tính năng Xác thực hai yếu tố (2FA - Two-Factor Authentication).",
-          D: "D. Chỉ đăng nhập mạng Wi-Fi công cộng ở các quán cafe lớn."
+          A: "A. Tấn công chiếm quyền điều khiển hệ thống máy chủ ngân hàng.",
+          B: "B. Cố ý đe dọa, xúc phạm, tung tin đồn thất thiệt, quấy rối tinh thần một cá nhân qua mạng xã hội, tin nhắn.",
+          C: "C. Giả mạo giao diện trang web để đánh cắp tài khoản.",
+          D: "D. Lây lan virus phá hoại dữ liệu ổ cứng."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 42. Tình huống: Bạn nhận được một email tự xưng là quản trị viên ngân hàng yêu cầu bạn nhấp vào một đường link và nhập mật khẩu để \"xác minh tài khoản bị khóa\". Hành vi này gọi là gì và cách xử lý đúng nhất là?",
+        options: {
+          A: "A. Lỗi hệ thống ngân hàng; Cần làm theo hướng dẫn ngay lập tức.",
+          B: "B. Lừa đảo Phishing; Cần xóa email, tuyệt đối không nhấn vào link và không cung cấp mật khẩu.",
+          C: "C. Spam quảng cáo; Nên chuyển email cho nhiều bạn bè cùng biết.",
+          D: "D. Hacker xâm nhập máy tính trực tiếp; Cần tắt máy ngay rút điện."
+        }, ans: "B"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 43. Để tăng cường bảo mật cho các tài khoản mạng xã hội (Facebook, Gmail) quan trọng, chuyên gia bảo mật luôn khuyên người dùng nên bật tính năng nào?",
+        options: {
+          A: "A. Cài đặt lại hệ điều hành định kỳ.",
+          B: "B. Tắt chế độ chia sẻ vị trí.",
+          C: "C. Tính năng xác thực hai bước (Two-Factor Authentication - 2FA).",
+          D: "D. Xóa bộ nhớ cache của trình duyệt mỗi ngày."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 44. Luật nào của Việt Nam quy định trực tiếp về các hành vi vi phạm pháp luật, bảo vệ an ninh quốc gia và trật tự an toàn xã hội trên không gian mạng (có hiệu lực từ năm 2019)?",
+        options: {
+          A: "A. Luật Báo chí.",
+          B: "B. Luật Giao dịch điện tử.",
+          C: "C. Luật Công nghệ thông tin.",
+          D: "D. Luật An ninh mạng."
+        }, ans: "D"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 45. Một người lạ dùng tài khoản nặc danh liên tục nhắn tin chửi bới, đe dọa bạn. Biện pháp xử lý nào là văn minh và an toàn nhất?",
+        options: {
+          A: "A. Chửi bới lại bằng ngôn ngữ thô tục hơn để áp đảo đối phương.",
+          B: "B. Đăng tải tin nhắn lên mạng để nhờ cộng đồng mạng truy tìm và tấn công người đó.",
+          C: "C. Chụp màn hình làm bằng chứng, chặn (block) tài khoản, báo cáo nền tảng, và báo cáo cho người lớn/cơ quan chức năng nếu thấy bị đe dọa thực sự.",
+          D: "D. Cung cấp địa chỉ nhà để hẹn gặp mặt giải quyết mâu thuẫn."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 46. Việc lén lút đăng nhập vào tài khoản Facebook của người khác và đọc tin nhắn riêng tư là vi phạm vào quyền gì của cá nhân?",
+        options: {
+          A: "A. Quyền tự do ngôn luận.",
+          B: "B. Quyền sở hữu trí tuệ.",
+          C: "C. Quyền bí mật thư tín và quyền riêng tư cá nhân.",
+          D: "D. Quyền tác giả."
+        }, ans: "C"
+      },
+      {
+        type: "mcq", topicName: TOPIC_3,
+        q: "Câu 47. Trước khi chia sẻ một thông tin gây sốc về dịch bệnh hoặc thảm họa trên Facebook, điều quan trọng nhất bạn CẦN LÀM là gì?",
+        options: {
+          A: "A. Chia sẻ thật nhanh để mọi người kịp phòng tránh.",
+          B: "B. Thêm vài chi tiết giật gân để bài viết có nhiều lượt tương tác.",
+          C: "C. Kiểm chứng chéo thông tin từ các cơ quan báo chí chính thống hoặc cổng thông tin của chính phủ.",
+          D: "D. Chỉ chia sẻ vào các nhóm kín."
         }, ans: "C"
       },
       {
         type: "tf", topicName: TOPIC_3,
-        q: "Câu 14. Đánh giá tính Đúng/Sai của các hiện tượng và hành vi khi tham gia không gian mạng:",
+        q: "Câu 48. Đánh giá tính Đúng/Sai về ưu và nhược điểm của giao tiếp trên không gian mạng:",
         items: {
-          a: "a) Giao tiếp qua mạng thiếu đi các tín hiệu phi ngôn ngữ (như nét mặt, giọng điệu), do đó dễ dẫn đến sự hiểu lầm.",
-          b: "b) Thường xuyên sử dụng từ lóng, ngôn từ kích động là cách tốt nhất để thể hiện cá tính bản thân.",
-          c: "c) Kỹ thuật \"Phishing\" là hình thức kẻ gian giả mạo email/tin nhắn từ tổ chức uy tín để lừa lấy mật khẩu, mã OTP.",
-          d: "d) Chia sẻ một tin tức chưa được kiểm chứng nhưng có nội dung hấp dẫn là hành vi hợp pháp và được khuyến khích."
+          a: "a) Ưu điểm nổi bật của mạng xã hội là khả năng phá vỡ giới hạn không gian, giúp kết nối nhanh chóng với mọi người trên toàn cầu.",
+          b: "b) Tính năng ẩn danh trên mạng giúp việc xây dựng niềm tin cá nhân trở nên dễ dàng và chân thực hơn bao giờ hết.",
+          c: "c) Một trong những rủi ro lớn là thông tin cá nhân (hình ảnh, số điện thoại) dễ bị thu thập, rò rỉ hoặc mua bán trái phép.",
+          d: "d) Việc thiếu đi biểu cảm gương mặt và giọng nói trong tin nhắn văn bản là nguyên nhân phổ biến gây ra những hiểu lầm không đáng có."
+        }, ans: { a: "Đ", b: "S", c: "Đ", d: "Đ" }
+      },
+      {
+        type: "tf", topicName: TOPIC_3,
+        q: "Câu 49. Đánh giá tính Đúng/Sai của các hành vi thể hiện tính nhân văn và đạo đức trên không gian mạng:",
+        items: {
+          a: "a) Lịch sự trên mạng đồng nghĩa với việc không sử dụng từ ngữ thô tục, phân biệt vùng miền hay kích động thù hằn.",
+          b: "b) Khi thấy một người bị cộng đồng mạng công kích tập thể (bạo lực mạng), hành động nhân văn là hùa theo để chứng tỏ mình thuộc về số đông.",
+          c: "c) Tôn trọng quyền sở hữu trí tuệ là việc trích dẫn rõ nguồn gốc, tên tác giả khi sử dụng bài viết, hình ảnh của người khác.",
+          d: "d) Tự do ngôn luận trên mạng nghĩa là bạn có quyền bịa đặt, vu khống bất kỳ ai miễn là đăng trên trang cá nhân của mình."
         }, ans: { a: "Đ", b: "S", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf", topicName: TOPIC_3,
+        q: "Câu 50. Đánh giá tính Đúng/Sai liên quan đến an toàn thông tin cơ bản:",
+        items: {
+          a: "a) Sử dụng chung một mật khẩu đơn giản (ví dụ: 123456) cho tất cả các tài khoản giúp tăng tính bảo mật vì không bao giờ bị quên.",
+          b: "b) Không nên nhấp vào các liên kết lạ hoặc tải tệp đính kèm từ những email không rõ danh tính gửi đến.",
+          c: "c) Việc thiết lập thông tin cá nhân trên mạng xã hội ở chế độ \"Công khai\" (Public) có nguy cơ dẫn đến việc bị đánh cắp danh tính.",
+          d: "d) Xác thực 2 bước (2FA) hoạt động bằng cách yêu cầu người dùng nhập cả mật khẩu và một mã xác nhận gửi qua SMS/App mỗi khi đăng nhập trên thiết bị lạ."
+        }, ans: { a: "S", b: "Đ", c: "Đ", d: "Đ" }
       }
-    ];
+];
 
     let currentList = [];
     let userAnswers = {};
